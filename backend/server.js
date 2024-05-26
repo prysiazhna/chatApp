@@ -7,11 +7,13 @@ import usersRouts from "./routs/user.routs.js";
 import {connectToMongoDB} from "./db/connectToMongoDB.js";
 import {app, server} from "./socket/socket.js";
 import uploadRouts from "./routs/upload.routs.js";
+import path from "path";
 
 
 const PORT = process.env.PORT || 3000;
 
 dotenv.config();
+const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(cookieParser());
@@ -21,6 +23,13 @@ app.use("/api/auth", authRouts);
 app.use("/api/messages", messagesRouts);
 app.use("/api/upload", uploadRouts);
 app.use("/api/users", usersRouts);
+
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
+
 server.listen(3000, () => {
     connectToMongoDB();
     console.log(`PORT ${PORT}`);
