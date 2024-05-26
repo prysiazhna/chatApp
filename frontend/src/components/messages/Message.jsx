@@ -1,6 +1,7 @@
 import {useAuthContext} from "../../context/AuthContext";
 import {extractTime} from "../../utils/extractTime";
 import useConversation from "../../store/useConversation";
+import React from "react";
 
 const Message = ({message}) => {
     const {authUser} = useAuthContext();
@@ -17,12 +18,27 @@ const Message = ({message}) => {
         <div className={`chat ${chatClassName}`}>
             <div className='chat-image avatar'>
                 <div className='w-10 rounded-full'>
-                    <img alt='Tailwind CSS chat bubble component' src={profilePic}/>
+                    <img alt='Profile' src={profilePic}/>
                 </div>
             </div>
-            <div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass} pb-2`}>{message.message}</div>
-            <div className='chat-footer text-gray-600 text-xs flex gap-1 items-center'>{formattedTime}</div>
+
+            <div>
+                {message.imageUrl ? (
+                    <div className='relative'>
+                        <img src={message.imageUrl} alt='Sent image' className='max-w-80 rounded-lg'/>
+                    </div>
+                ) : (
+                    <div
+                        className={`chat-bubble max-w-none text-white ${bubbleBgColor} ${shakeClass} pb-2 whitespace-pre-wrap break-words`}>
+                        {message.message}
+                    </div>
+                )}
+            </div>
+            <div className='chat-footer text-gray-600 text-xs flex gap-1 items-center'>
+                {formattedTime}
+            </div>
         </div>
     );
 };
+
 export default Message;

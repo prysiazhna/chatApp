@@ -1,33 +1,40 @@
-import {useState} from "react";
 import useConversation from "../store/useConversation";
-import toast from "react-hot-toast";
+import API_URLS from "../api/api.js";
+import {useAuthContext} from "../context/AuthContext";
+import usePostRequest from "./usePostRequest";
 
 const useSendMessage = () => {
-    const [loading, setLoading] = useState(false);
     const {messages, setMessages, selectedConversation} = useConversation();
+    const {authUser} = useAuthContext();
+    const {loading, makePostRequest} = usePostRequest();
 
     const sendMessage = async (message) => {
-        setLoading(true);
-        try {
-            console.log(selectedConversation._id);
-            const res = await fetch(`/api/messages/send/${selectedConversation._id}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({message}),
-            });
-            const data = await res.json();
-            if (data.error) throw new Error(data.error);
+        const data = await makePostRequest(`${API_URLS.SEND_MESSAGE}${selectedConversation._id}`, {
+            message,
+            senderId: authUser._id,
+            receiverId: selectedConversation._id,
+        });
 
+        if (data) {
             setMessages([...messages, data]);
-        } catch (error) {
-            toast.error(error.message);
-        } finally {
-            setLoading(false);
         }
     };
 
-    return {sendMessage, loading};
+    const sendImage = async (file) => {
+        const formData = new FormData();
+        formData.append("image", file);
+        formData.append("senderId", authUser._id);
+        formData.append("receiverId", selectedConversation._id);
+
+        const data = await makePostRequest(`${API_URLS.UPLOAD_IMAGE}${selectedConversation._id}`, formData, true);
+
+        if (data) {
+            setMessages([...messages, data]);
+        }
+    };
+
+    return {sendMessage, sendImage, loading};
 };
+
 export default useSendMessage;
+

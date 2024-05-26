@@ -40,7 +40,6 @@ const SignUp = () => {
                             value={inputs.fullName}
                             onChange={e => setInputs({...inputs, fullName: e.target.value})}/>
                     </div>
-
                     <div>
                         <label className='label pb-1 pt-3'>
                             <span className='text-sm label-text text-gray-200'>Username</span>
@@ -52,7 +51,6 @@ const SignUp = () => {
                             value={inputs.username}
                             onChange={e => setInputs({...inputs, username: e.target.value})}/>
                     </div>
-
                     <div>
                         <label className='label pb-1 pt-3'>
                             <span className='text-sm label-text text-gray-200'>Password</span>
@@ -64,7 +62,6 @@ const SignUp = () => {
                             value={inputs.password}
                             onChange={e => setInputs({...inputs, password: e.target.value})}/>
                     </div>
-
                     <div>
                         <label className='label pb-1 pt-3'>
                             <span className='text-sm label-text text-gray-200'>Confirm Password</span>
@@ -74,8 +71,7 @@ const SignUp = () => {
                             placeholder='Enter password'
                             className='w-full input input-bordered h-10 placeholder-gray-300 text-sm bg-gray-700 border-gray-600'
                             value={inputs.confirmPassword}
-                            onChange={e => setInputs({...inputs, confirmPassword: e.target.value})}
-                        />
+                            onChange={e => setInputs({...inputs, confirmPassword: e.target.value})}/>
                     </div>
 
                     <GenderCheckbox onCheckboxChange={handleCheckboxChange} selectedGender={inputs.gender}/>

@@ -1,39 +1,29 @@
-import {useState} from "react";
-import toast from "react-hot-toast";
+import usePostRequest from "./usePostRequest.js";
 import {useAuthContext} from "../context/AuthContext.jsx";
+import toast from "react-hot-toast";
+import API_URLS from "../api/api.js";
 
 const useSignup = () => {
-    const [loading, setLoading] = useState(false);
+    const {loading, makePostRequest} = usePostRequest();
     const {setAuthUser} = useAuthContext();
 
     const signup = async ({fullName, username, password, confirmPassword, gender}) => {
         const isValid = isFormValid({fullName, username, password, confirmPassword, gender});
         if (!isValid) return;
 
-        setLoading(true);
-        try {
-            const res = await fetch("/api/auth/signup", {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({fullName, username, password, confirmPassword, gender}),
-            });
+        const data = await makePostRequest(API_URLS.SIGN_UP, {fullName, username, password, confirmPassword, gender});
 
-            const data = await res.json();
-            if (data.error) {
-                throw new Error(data.error);
-            }
+        if (data) {
             localStorage.setItem("chat-user", JSON.stringify(data));
             setAuthUser(data);
-        } catch (error) {
-            toast.error(error.message);
-        } finally {
-            setLoading(false);
         }
     };
 
     return {loading, signup};
 };
+
 export default useSignup;
+
 
 function isFormValid({fullName, username, password, confirmPassword, gender}) {
     if (!fullName || !username || !password || !confirmPassword || !gender) {

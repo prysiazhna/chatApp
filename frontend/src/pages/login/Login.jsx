@@ -32,8 +32,7 @@ const Login = () => {
                             placeholder='Enter username'
                             className='w-full input input-bordered h-10 placeholder-gray-300 text-sm bg-gray-700 border-gray-600'
                             value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                        />
+                            onChange={(e) => setUsername(e.target.value)}/>
                     </div>
 
                     <div>
@@ -45,8 +44,7 @@ const Login = () => {
                             placeholder='Enter password'
                             className='w-full input input-bordered h-10 placeholder-gray-300 text-sm bg-gray-700 border-gray-600'
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
+                            onChange={(e) => setPassword(e.target.value)}/>
                     </div>
                     <Link to='/signup'
                           className='text-sm text-gray-200 hover:underline hover:text-black mt-4 inline-block'>
@@ -55,7 +53,7 @@ const Login = () => {
 
                     <div>
                         <button className='btn btn-block btn-sm mt-2' disabled={loading}>
-                            {loading ? <span className='loading loading-spinner '></span> : "Login"}
+                            {loading ? <span className='loading loading-spinner'></span> : "Login"}
                         </button>
                     </div>
                 </form>

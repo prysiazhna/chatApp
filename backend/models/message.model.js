@@ -14,12 +14,14 @@ const messageSchema = new mongoose.Schema(
         },
         message: {
             type: String,
-            required: true,
         },
-        // createdAt, updatedAt
+        imageUrl: {
+            type: String,
+        },
     },
     {timestamps: true}
 );
+
 
 const Message = mongoose.model("Message", messageSchema);
 

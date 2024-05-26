@@ -18,7 +18,7 @@ export const signup = async (req, res) => {
         const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`;
         const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${username}`;
 
-        const salt = await bcrypt.genSalt(10);
+        const salt = await bcrypt.genSalt(7);
         const hashedPassword = await bcrypt.hash(password, salt);
 
         const newUser = new User({
@@ -81,4 +81,3 @@ export const logout = async (req, res) => {
         res.status(500).json({error: "Internal Server Error"});
     }
 }
-//RDJxKSqtbvrbEHY1
