@@ -1,6 +1,6 @@
 # ChatApp
 
-![97D27E7B-FCB1-44CC-8D37-C0FF64EC35CF_4_5005_c](https://github.com/user-attachments/assets/8520e4be-e328-4417-85a3-9aa02fe4e330)
+![1720910478750313](https://github.com/user-attachments/assets/f49fed5d-8887-496a-a73a-4b4f0e3d3753)
 
 ## Description
 
