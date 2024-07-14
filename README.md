@@ -1,8 +1,10 @@
 # ChatApp
 
-![1720910478750313](https://github.com/user-attachments/assets/f49fed5d-8887-496a-a73a-4b4f0e3d3753)
+https://github.com/user-attachments/assets/2ced847c-c1d2-4f6b-9afe-decb1783a4f3
+
 
 ## Description
+
 
 ChatApp is a real-time chat application built using the MERN stack (MongoDB, Express, React, Node.js), Socket.io for real-time communication, and TailwindCSS and Daisy UI for a modern and user-friendly interface.
 
