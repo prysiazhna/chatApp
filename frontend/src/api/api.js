@@ -9,3 +9,4 @@ const API_URLS = {
     UPLOAD_IMAGE: `${BASE_API_URL}/api/upload/`,
     GET_CONVERSATIONS: `${BASE_API_URL}/api/users`
 };
+export default API_URLS;
