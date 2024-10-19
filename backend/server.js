@@ -16,9 +16,14 @@ dotenv.config();
 const __dirname = path.resolve();
 
 app.use(cors({
-    origin: "https://prysiazhna-chat-app.vercel.app", 
+    origin: "https://prysiazhna-chat-app.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
+// Handle preflight requests
+app.options('*', cors()); 
 
 app.use(express.json());
 app.use(cookieParser());
