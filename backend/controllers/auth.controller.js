@@ -5,6 +5,7 @@ import generateTokenAndSetCookie from "../utils/generateToken.js";
 export const signup = async (req, res) => {
     try {
         const {fullName, username, password, confirmPassword, gender} = req.body;
+     
         if (password !== confirmPassword) {
             return res.status(400).json({error: "Passwords don't match"});
         }
@@ -51,6 +52,11 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
     try {
         const {username, password} = req.body;
+
+        // Add CORS headers
+        res.setHeader("Access-Control-Allow-Origin", "https://prysiazhna-chat-app.vercel.app");
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+
         const user = await User.findOne({username});
         const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
 
