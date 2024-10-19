@@ -15,6 +15,7 @@ const usePostRequest = () => {
                 method: "POST",
                 headers,
                 body,
+                credentials: "include", 
             });
             const responseData = await res.json();
             if (res.ok) {
