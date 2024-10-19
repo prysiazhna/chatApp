@@ -15,6 +15,11 @@ const PORT = process.env.PORT || 3000;
 dotenv.config();
 const __dirname = path.resolve();
 
+app.use(cors({
+    origin: "https://prysiazhna-chat-app.vercel.app", 
+    credentials: true,
+}));
+
 app.use(express.json());
 app.use(cookieParser());
 
