@@ -8,7 +8,7 @@ import {connectToMongoDB} from "./db/connectToMongoDB.js";
 import {app, server} from "./socket/socket.js";
 import uploadRouts from "./routs/upload.routs.js";
 import path from "path";
-
+import cors from "cors";
 
 const PORT = process.env.PORT || 3000;
 
